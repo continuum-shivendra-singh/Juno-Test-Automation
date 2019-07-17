@@ -4,6 +4,7 @@ package stepDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 
 import com.jcraft.jsch.ChannelExec;
 
@@ -45,7 +46,7 @@ public class Agent_Registration_Installation {
 			  
 		  }
 	  
-		  
+		  //Assert.assertTrue(message, condition);
 		 
 	}
 
@@ -106,13 +107,13 @@ public class Agent_Registration_Installation {
 		 // commands.add("cd");
 		  //commands.add(dir);
 		  
-		  
+	  
 		  for (String command : commands) { ((ChannelExec)channel).setCommand(command);
 		  
 		  }
 		  
 		  ((ChannelExec)channel).setErrStream(System.err);
-		  
+	  
 		  
 		  channel.connect();
 		  
@@ -120,7 +121,7 @@ public class Agent_Registration_Installation {
 		  System.out.println(lines);
 		  for(int i=0;i<lines.size();i++) {
 			  if(lines.get(i).contains("Platform-Agent-Exe.exe")) {
-				  System.out.println("windows installer is present");
+			  System.out.println("windows installer is present");
 				  break;
 			  }
 			  
@@ -138,10 +139,10 @@ public class Agent_Registration_Installation {
 		commands.add("echo this is sample command");
 		//commands.add("mkdir C:\\\\Juno-Agent2.0\\\\Downloads\\\\shape");
 		
-        commands.add("cmd /c cd C:\\Juno-Agent2.0\\Downloads && .\\Platform-Agent-Exe.exe /s QA");
+        commands.add("cmd /c cd C:\\Juno-Agent2.0\\Downloads && .\\Platform-Agent-Exe.exe /s ENV=QA");
         
 
-        commands.add("cmd /c cd C:\\Program Files\\ITSPlatform\\config && C:\\jq-win32.exe -r .EndPointID platform_agent_core_cfg.json");
+       
       
       for (String command : commands) {
       ((ChannelExec)channel).setCommand(command);
@@ -163,6 +164,12 @@ public class Agent_Registration_Installation {
 	}
 	@Then("^Agent install successfully on the window machine$")
 	public void agent_install_successfully_on_the_window_machine() throws Throwable {
+		channel = sshConenection.getSessionWindows().openChannel("exec");
+		String command="cmd /c cd C:\\Program Files\\ITSPlatform\\config && C:\\jq-win32.exe -r .EndPointID platform_agent_core_cfg.json";
+		 ((ChannelExec)channel).setCommand(command);
+		 channel.connect();
+		 lines=registrationInstallation.readChannelOutputWindows(channel);
+		 System.out.println(lines);
 		if(lines.isEmpty()) {
 			  System.out.println("Windows agent is installed but not registered");
 		  }
