@@ -1,0 +1,70 @@
+[
+  {
+    "comments": [
+      {
+        "line": 1,
+        "value": "#Author: shivendra"
+      }
+    ],
+    "line": 3,
+    "elements": [
+      {
+        "line": 5,
+        "name": "Verify Agent is installated and registered successfully on Linux",
+        "description": "",
+        "id": "validate-registration,-re-registration,-installation-and-uninstallation-of-agent-on-windows,-linux,-mac;verify-agent-is-installated-and-registered-successfully-on-linux",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 2378111500,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Linux agent present on the machine",
+            "match": {
+              "location": "Agent_Registration_Installation.linux_agent_present_on_the_machine()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 53062602900,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "User install agent on machine",
+            "match": {
+              "location": "Agent_Registration_Installation.user_install_agent_on_machine()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 306700,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "Agent install successfully on the machine",
+            "match": {
+              "location": "Agent_Registration_Installation.agent_install_successfully_on_the_machine()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "line": 4,
+            "name": "@registration"
+          }
+        ]
+      }
+    ],
+    "name": "Validate Registration, Re-registration, installation and uninstallation of Agent on Windows, Linux, MAC",
+    "description": "",
+    "id": "validate-registration,-re-registration,-installation-and-uninstallation-of-agent-on-windows,-linux,-mac",
+    "keyword": "Feature",
+    "uri": "Agent_Registration_Installation.feature"
+  }
+]
