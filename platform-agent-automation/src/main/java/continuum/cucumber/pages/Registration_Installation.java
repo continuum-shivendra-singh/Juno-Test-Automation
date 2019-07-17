@@ -44,7 +44,7 @@ public class Registration_Installation {
 			  String line="";
 			 
 			while((line= reader.readLine()) !=null) {
-			
+			System.out.println(line);
 				
 			windowsLines.add(line);
 			}
